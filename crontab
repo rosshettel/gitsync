@@ -1,2 +1,2 @@
 #  m h  dom mon dow    command
-   * *  *   *   *      /repos/sync.sh
+0,30 *  *   *   *      /repos/sync.sh
