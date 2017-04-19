@@ -1,0 +1,60 @@
+{
+    "rosshettel": [
+        "flexget",
+        "gitsync",
+        "motobit",
+        "fireworks-detonator",
+        "wework-credit-monitor",
+        "slack-irc-client",
+        "ssh-tunnel-docker",
+        "mirandakanter.me",
+        "airbnb_test",
+        "miokta-roams",
+        "whois-bot",
+        "clock-angle",
+        "location-history-map",
+        "fetlife-scraper",
+        "tinder-time",
+        "TracyWest",
+        "Tippr",
+        "the-noun-project",
+        "rosshettel.github.io",
+        "ministry-poster",
+        "ngWeatherStation",
+        "jelloearth",
+        "codeship-notifier",
+        "gba",
+        "chefgus",
+        "24-Clock",
+        "jetbrains-auth-server",
+        "launchpad",
+        "launchd-rsync-backup",
+        "dotfiles",
+        "placegoat",
+        "nasa-config"
+    ],
+    "theaccordance": [
+        "paxbot",
+        "spoiled"
+    ],
+    "highground": [
+        "node-dealer",
+        "mobile",
+        "incentive-display",
+        "hgwww",
+        "hgtv",
+        "hgmailr",
+        "hgauto",
+        "hgapp"
+    ],
+    "edo": [
+        "edo-charts"
+    ],
+    "hologram": [
+        "hologram-dashboard",
+        "konekt-rest-api",
+        "konekt-cloud-services-router",
+        "konekt-backend",
+        "konekt-cloud-tunnel"
+    ]
+}

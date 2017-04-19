@@ -1,21 +1,27 @@
 #!/bin/bash
 
-while read -r folder && read -r origin && read -r mirror; do
-    cd /repos
+while read -r org && read -r repo; do
+    cd ~/Code/git-sync
 
-    if [ ! -d "$folder" ]; then
-        echo "## Repo $folder doesn't exist, cloning..."
-        git clone -q --mirror $origin $folder
-        cd $folder
-        git remote add mirror $mirror
+    echo "# $org/$repo"
+
+    echo "### Creating repo on gogs"
+    json="{\"name\": \"$repo\", \"private\": true}"
+    if [[ $org == "rosshettel" ]]; then
+        url="https://git.nasa.rosshettel.com/api/v1/user/repos"
     else
-        echo "## Pulling latest from origin for $folder"
-        cd $folder
-        git fetch -q --prune origin
-        # check errors
+        url="https://git.nasa.rosshettel.com/api/v1/org/$org/repos"
     fi
+    curl -H "Content-Type: application/json" \
+         -H "Authorization: token 4c19089a3e62660981a343e304c6372abd56b9da" \
+         -X POST -d "$json" $url
 
-    echo "## Pushing latest to mirror for $folder"
+    echo "### Cloning from gitlab"
+    git clone -q --mirror gitlab:$org/$repo
+    cd $repo.git
+    git remote add mirror git:$org/$repo
+
+    echo "### Pushing to gogs"
     git push -q --mirror mirror
-    # check errors
-done < <(jq -r 'to_entries[] | .key, .value.origin, .value.mirror' </config.json)
+
+done < <(jq -r 'to_entries[] | .key + "\n" + .value[]' <./config.json)

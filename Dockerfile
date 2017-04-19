@@ -5,6 +5,7 @@ RUN apk-install \
     bash \
     jq \
     openssh \
+    curl \
     git
 
 WORKDIR /repos
