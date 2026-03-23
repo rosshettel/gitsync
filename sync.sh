@@ -1,21 +1,19 @@
 #!/bin/bash
 
-while read -r folder && read -r origin && read -r mirror; do
+while read -r name && read -r origin && read -r mirror; do
     cd /repos
 
-    if [ ! -d "$folder" ]; then
-        echo "## Repo $folder doesn't exist, cloning..."
-        git clone -q --mirror $origin $folder
-        cd $folder
-        git remote add mirror $mirror
+    if [ ! -d "$name" ]; then
+        echo "## Repo $name doesn't exist, cloning..."
+        git clone -q --mirror "$origin" "$name"
+        cd "$name"
+        git remote add mirror "$mirror"
     else
-        echo "## Pulling latest from origin for $folder"
-        cd $folder
+        echo "## Pulling latest from origin for $name"
+        cd "$name"
         git fetch -q --prune origin
-        # check errors
     fi
 
-    echo "## Pushing latest to mirror for $folder"
+    echo "## Pushing latest to mirror for $name"
     git push -q --mirror mirror
-    # check errors
-done < <(jq -r 'to_entries[] | .key, .value.origin, .value.mirror' </config.json)
+done < <(jq -r '.repos | to_entries[] | .key, .value.origin, .value.mirror' /config.json)

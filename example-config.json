@@ -1,0 +1,9 @@
+{
+  "frequency": "hourly",
+  "repos": {
+    "repo": {
+      "origin": "git@github.com:org/repo1.git",
+      "mirror": "git@gitgithub:org/repo2.git"
+    }
+  }
+}

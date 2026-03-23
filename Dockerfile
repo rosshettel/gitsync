@@ -1,7 +1,7 @@
-FROM gliderlabs/alpine
-MAINTAINER Ross Hettel <ross@het.tel>
+FROM alpine
+LABEL maintainer="Ross Hettel <ross@het.tel>"
 
-RUN apk-install \
+RUN apk add --no-cache \
     bash \
     jq \
     openssh \
@@ -12,7 +12,8 @@ WORKDIR /repos
 VOLUME /config.json
 VOLUME /root/.ssh
 
-ADD ./crontab /var/spool/cron/crontabs/root
-ADD ./sync.sh /repos/sync.sh
+COPY ./sync.sh /repos/sync.sh
+COPY ./entrypoint.sh /repos/entrypoint.sh
+RUN chmod +x /repos/sync.sh /repos/entrypoint.sh
 
-CMD crond -f
+CMD ["/repos/entrypoint.sh"]
