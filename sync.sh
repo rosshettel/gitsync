@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
+
 while read -r name && read -r origin && read -r mirror; do
     cd /repos
 
